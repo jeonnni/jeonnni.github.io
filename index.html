@@ -8,12 +8,9 @@
 
 <!--
   ================================================================
-  여기만 고치면 됩니다
-  ================================================================
-  1) 앱 타일의 href="#"  →  App Store 링크로 교체
-  2) 개인정보 처리방침의 href="#"  →  기존에 쓰던 방침 주소로 교체
-  3) 아래 이메일 주소 교체
-  4) 앱 이모지는 한 글자라 그냥 바꾸시면 됩니다
+  남은 작업: 앱 타일에 App Store 링크 붙이기 (선택)
+  현재 타일은 각 앱의 고객 지원 페이지로 연결되어 있습니다.
+  App Store로 바로 보내고 싶으면 href 를 스토어 주소로 바꾸세요.
   ================================================================
 -->
 
@@ -267,46 +264,52 @@
     <h2 class="section-title">Apps</h2>
     <ul class="apps">
 
-      <!-- href="#" 를 App Store 주소로 바꿔주세요 -->
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/jansori.html">
           <span class="icon" aria-hidden="true">🐷</span>
           <span class="app-name">잔소리 가계부</span>
         </a>
       </li>
 
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/ttokddi.html">
           <span class="icon" aria-hidden="true">⏱️</span>
           <span class="app-name">똑띠 플래너</span>
         </a>
       </li>
 
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/filmi.html">
           <span class="icon" aria-hidden="true">🎞️</span>
           <span class="app-name">필르미</span>
         </a>
       </li>
 
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/dogaki.html">
           <span class="icon" aria-hidden="true">🍒</span>
           <span class="app-name">도각이</span>
         </a>
       </li>
 
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/moodd.html">
           <span class="icon" aria-hidden="true">📅</span>
           <span class="app-name">무드디데이</span>
         </a>
       </li>
 
       <li>
-        <a class="app" href="#">
+        <a class="app" href="support/oldmi.html">
           <span class="icon" aria-hidden="true">🕰️</span>
           <span class="app-name">올드미</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/gyeol.html">
+          <span class="icon" aria-hidden="true">🎧</span>
+          <span class="app-name">결</span>
         </a>
       </li>
 
@@ -321,16 +324,31 @@
   </section>
 
   <section class="section">
+    <h2 class="section-title">고객 지원</h2>
+    <div class="card">
+      <ul class="rows">
+        <li><a class="row" href="support/jansori.html"><span>잔소리 가계부</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/ttokddi.html"><span>똑띠 플래너</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/filmi.html"><span>필르미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/dogaki.html"><span>도각이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/moodd.html"><span>무드디데이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/oldmi.html"><span>올드미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/gyeol.html"><span>결</span><span>보기 →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
     <h2 class="section-title">개인정보 처리방침</h2>
     <div class="card">
       <ul class="rows">
-        <!-- href="#" 를 앱별 방침 주소로 바꿔주세요 -->
-        <li><a class="row" href="#"><span>잔소리 가계부</span><span>보기 →</span></a></li>
-        <li><a class="row" href="#"><span>똑띠 플래너</span><span>보기 →</span></a></li>
-        <li><a class="row" href="#"><span>필르미</span><span>보기 →</span></a></li>
-        <li><a class="row" href="#"><span>도각이</span><span>보기 →</span></a></li>
-        <li><a class="row" href="#"><span>무드디데이</span><span>보기 →</span></a></li>
-        <li><a class="row" href="#"><span>올드미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/jansori.html"><span>잔소리 가계부</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/ttokddi.html"><span>똑띠 플래너</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/filmi.html"><span>필르미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/dogaki.html"><span>도각이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/moodd.html"><span>무드디데이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/oldmi.html"><span>올드미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/gyeol.html"><span>결</span><span>보기 →</span></a></li>
       </ul>
     </div>
   </section>
@@ -340,7 +358,6 @@
     <p style="margin:0 0 6px; color:var(--muted); font-size:15px;">
       버그 제보나 기능 제안은 메일로 보내주세요.
     </p>
-    <!-- 이메일 주소를 바꿔주세요 -->
     <a class="contact" href="mailto:ymymda0711@gmail.com">ymymda0711@gmail.com</a>
   </section>
 
