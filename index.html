@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eunmi jeon — iOS Apps</title>
+<meta name="description" content="1인 개발자 eunmi jeon이 만든 iOS 앱 모음과 개인정보 처리방침.">
+
+<!--
+  ================================================================
+  여기만 고치면 됩니다
+  ================================================================
+  1) 앱 타일의 href="#"  →  App Store 링크로 교체
+  2) 개인정보 처리방침의 href="#"  →  기존에 쓰던 방침 주소로 교체
+  3) 아래 이메일 주소 교체
+  4) 앱 이모지는 한 글자라 그냥 바꾸시면 됩니다
+  ================================================================
+-->
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+<style>
+  :root{
+    --bg:#E8EBF1;
+    --surface:#FFFFFF;
+    --ink:#11131A;
+    --muted:#666E80;
+    --line:rgba(17,19,26,.10);
+    --accent:#2E52FF;
+    --radius:22px;
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-weight:450;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* 잠금화면 같은 은은한 배경 */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(70% 55% at 18% 0%, rgba(46,82,255,.16), transparent 62%),
+      radial-gradient(60% 50% at 92% 8%, rgba(255,122,182,.16), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:780px;
+    margin:0 auto;
+    padding:88px 24px 64px;
+  }
+
+  /* ---------- 헤더 ---------- */
+  .eyebrow{
+    margin:0 0 18px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  h1{
+    margin:0 0 14px;
+    font-size:clamp(38px, 8vw, 62px);
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:1.04;
+  }
+
+  .lede{
+    margin:0;
+    max-width:32ch;
+    font-size:17px;
+    color:var(--muted);
+  }
+
+  /* ---------- 섹션 ---------- */
+  .section{ margin-top:64px; }
+
+  .section-title{
+    margin:0 0 20px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- 앱 그리드 (홈 화면) ---------- */
+  .apps{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(96px, 1fr));
+    gap:28px 16px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  .app{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:inherit;
+  }
+
+  .icon{
+    display:grid;
+    place-items:center;
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:var(--surface);
+    font-size:34px;
+    line-height:1;
+    box-shadow:
+      0 1px 1px rgba(17,19,26,.06),
+      0 8px 20px -8px rgba(17,19,26,.28);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+
+  .app:hover .icon,
+  .app:focus-visible .icon{
+    transform:scale(.94);
+    box-shadow:0 2px 8px -2px rgba(17,19,26,.24);
+  }
+
+  .app-name{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:-.01em;
+    text-align:center;
+  }
+
+  .app[aria-disabled="true"]{ cursor:default; }
+  .app[aria-disabled="true"] .icon{ opacity:.5; }
+  .app[aria-disabled="true"]:hover .icon{ transform:none; }
+
+  .soon{
+    display:block;
+    font-size:11px;
+    font-weight:500;
+    color:var(--muted);
+  }
+
+  /* ---------- 리스트 카드 ---------- */
+  .card{
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:8px 22px;
+    box-shadow:0 1px 2px rgba(17,19,26,.05), 0 12px 30px -18px rgba(17,19,26,.4);
+  }
+
+  .rows{ list-style:none; margin:0; padding:0; }
+
+  .rows li + li{ border-top:1px solid var(--line); }
+
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:15px 0;
+    text-decoration:none;
+    color:inherit;
+    font-size:15px;
+    font-weight:500;
+  }
+
+  .row span:last-child{
+    color:var(--muted);
+    font-size:14px;
+    transition:transform .16s ease, color .16s ease;
+  }
+
+  .row:hover span:last-child,
+  .row:focus-visible span:last-child{
+    color:var(--accent);
+    transform:translateX(3px);
+  }
+
+  /* ---------- 문의 ---------- */
+  .contact{
+    display:inline-block;
+    margin-top:4px;
+    font-size:17px;
+    font-weight:600;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:2px solid rgba(46,82,255,.28);
+    padding-bottom:2px;
+  }
+
+  .contact:hover{ border-bottom-color:var(--accent); }
+
+  /* ---------- 푸터 ---------- */
+  footer{
+    margin-top:72px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+
+  .copyright{
+    margin:0 0 12px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+
+  .legal{
+    margin:0 0 8px;
+    max-width:56ch;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--muted);
+  }
+
+  .legal:last-child{ margin-bottom:0; }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+    border-radius:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  @media (max-width:520px){
+    .wrap{ padding:56px 20px 48px; }
+    .apps{ gap:24px 12px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">iOS · Indie Developer</p>
+    <h1>eunmi jeon</h1>
+    <p class="lede">기획부터 디자인, 개발까지 혼자 만드는 iOS 앱을 모아둔 곳입니다.</p>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">Apps</h2>
+    <ul class="apps">
+
+      <!-- href="#" 를 App Store 주소로 바꿔주세요 -->
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">🐷</span>
+          <span class="app-name">잔소리 가계부</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">⏱️</span>
+          <span class="app-name">똑띠 플래너</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">🎞️</span>
+          <span class="app-name">필르미</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">🍒</span>
+          <span class="app-name">도각이</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">📅</span>
+          <span class="app-name">무드디데이</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="#">
+          <span class="icon" aria-hidden="true">🕰️</span>
+          <span class="app-name">올드미</span>
+        </a>
+      </li>
+
+      <li>
+        <span class="app" aria-disabled="true">
+          <span class="icon" aria-hidden="true">🎨</span>
+          <span class="app-name">색줍기<span class="soon">준비 중</span></span>
+        </span>
+      </li>
+
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">개인정보 처리방침</h2>
+    <div class="card">
+      <ul class="rows">
+        <!-- href="#" 를 앱별 방침 주소로 바꿔주세요 -->
+        <li><a class="row" href="#"><span>잔소리 가계부</span><span>보기 →</span></a></li>
+        <li><a class="row" href="#"><span>똑띠 플래너</span><span>보기 →</span></a></li>
+        <li><a class="row" href="#"><span>필르미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="#"><span>도각이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="#"><span>무드디데이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="#"><span>올드미</span><span>보기 →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">문의</h2>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:15px;">
+      버그 제보나 기능 제안은 메일로 보내주세요.
+    </p>
+    <!-- 이메일 주소를 바꿔주세요 -->
+    <a class="contact" href="mailto:ymymda0711@gmail.com">ymymda0711@gmail.com</a>
+  </section>
+
+  <footer>
+    <p class="copyright">Copyright © 2026 ym. All rights reserved.</p>
+
+    <p class="legal">
+      이 사이트에 실린 앱 이름, 아이콘, 이미지, 문구를 포함한 모든 콘텐츠의 저작권은
+      개발자에게 있습니다. 사전 동의 없이 복제, 배포, 수정하거나 상업적으로 이용할 수 없습니다.
+    </p>
+
+    <p class="legal">
+      Apple, App Store, iPhone, iPad는 미국 및 기타 국가에 등록된 Apple Inc.의 상표입니다.
+      본 사이트는 Apple Inc.와 제휴 관계가 없습니다.
+    </p>
+
+    <p class="legal">
+      문의: <a href="mailto:ymymda0711@gmail.com" style="color:inherit;">ymymda0711@gmail.com</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
