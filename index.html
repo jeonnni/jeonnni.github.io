@@ -3,99 +3,384 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>색줍기</title>
-<style>
-/* 색줍기 문서 공통 스타일 — 앱 브랜드 팔레트를 그대로 쓴다 */
-:root {
-  --bg: #FAF2E4;
-  --card: #FFFCF6;
-  --text: #2B2320;
-  --muted: #6F635B;
-  --accent: #96603F;
-  --line: #E3D7C4;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1A1613; --card: #241E1A; --text: #F2EDE6;
-    --muted: #A99C92; --accent: #D49B76; --line: #3A312B;
-  }
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0; padding: 0;
-  background: var(--bg); color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
-  line-height: 1.75; word-break: keep-all;
-}
-.wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
-header { border-bottom: 1px solid var(--line); padding-bottom: 24px; margin-bottom: 36px; }
-.app { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.app-name { font-size: 20px; font-weight: 700; }
-.app-sub { color: var(--muted); font-size: 14px; }
-h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.4px; }
-h2 { font-size: 18px; margin: 40px 0 12px; letter-spacing: -0.2px; }
-h3 { font-size: 15px; margin: 24px 0 8px; }
-p, li { font-size: 15px; color: var(--text); }
-ul { padding-left: 20px; }
-li { margin: 6px 0; }
-.meta { color: var(--muted); font-size: 14px; }
-a { color: var(--accent); }
-.card {
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: 14px; padding: 18px 20px; margin: 16px 0;
-}
-.card p:first-child, .card ul:first-child { margin-top: 0; }
-.card p:last-child, .card ul:last-child { margin-bottom: 0; }
-.tag {
-  display: inline-block; font-size: 12px; font-weight: 600;
-  color: var(--accent); border: 1px solid var(--accent);
-  border-radius: 999px; padding: 2px 10px; margin-bottom: 10px;
-}
-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
-th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { color: var(--muted); font-weight: 600; width: 34%; }
-footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-code { background: var(--card); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 13px; }
+<title>eunmi jeon — iOS Apps</title>
+<meta name="description" content="1인 개발자 eunmi jeon이 만든 iOS 앱 모음과 개인정보 처리방침.">
 
-/* 좁은 화면에서는 표를 세로로 쌓는다.
-   th 를 좁은 열로 두면 "선 택 한 사 진" 처럼 한 글자씩 줄바꿈된다. */
-@media (max-width: 560px) {
-  table, tbody, tr, th, td { display: block; width: 100%; }
-  tr { border-bottom: 1px solid var(--line); padding: 10px 0; }
-  tr:last-child { border-bottom: none; }
-  th { border: none; padding: 0 0 2px; width: auto; }
-  td { border: none; padding: 0; }
-}
+<!--
+  ================================================================
+  남은 작업: 앱 타일에 App Store 링크 붙이기 (선택)
+  현재 타일은 각 앱의 고객 지원 페이지로 연결되어 있습니다.
+  App Store로 바로 보내고 싶으면 href 를 스토어 주소로 바꾸세요.
+  ================================================================
+-->
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+<style>
+  :root{
+    --bg:#E8EBF1;
+    --surface:#FFFFFF;
+    --ink:#11131A;
+    --muted:#666E80;
+    --line:rgba(17,19,26,.10);
+    --accent:#2E52FF;
+    --radius:22px;
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-weight:450;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* 잠금화면 같은 은은한 배경 */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(70% 55% at 18% 0%, rgba(46,82,255,.16), transparent 62%),
+      radial-gradient(60% 50% at 92% 8%, rgba(255,122,182,.16), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:780px;
+    margin:0 auto;
+    padding:88px 24px 64px;
+  }
+
+  /* ---------- 헤더 ---------- */
+  .eyebrow{
+    margin:0 0 18px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  h1{
+    margin:0 0 14px;
+    font-size:clamp(38px, 8vw, 62px);
+    font-weight:800;
+    letter-spacing:-.035em;
+    line-height:1.04;
+  }
+
+  .lede{
+    margin:0;
+    max-width:32ch;
+    font-size:17px;
+    color:var(--muted);
+  }
+
+  /* ---------- 섹션 ---------- */
+  .section{ margin-top:64px; }
+
+  .section-title{
+    margin:0 0 20px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- 앱 그리드 (홈 화면) ---------- */
+  .apps{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(96px, 1fr));
+    gap:28px 16px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  .app{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:inherit;
+  }
+
+  .icon{
+    display:grid;
+    place-items:center;
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:var(--surface);
+    font-size:34px;
+    line-height:1;
+    box-shadow:
+      0 1px 1px rgba(17,19,26,.06),
+      0 8px 20px -8px rgba(17,19,26,.28);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+
+  .app:hover .icon,
+  .app:focus-visible .icon{
+    transform:scale(.94);
+    box-shadow:0 2px 8px -2px rgba(17,19,26,.24);
+  }
+
+  .app-name{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:-.01em;
+    text-align:center;
+  }
+
+  .app[aria-disabled="true"]{ cursor:default; }
+  .app[aria-disabled="true"] .icon{ opacity:.5; }
+  .app[aria-disabled="true"]:hover .icon{ transform:none; }
+
+  .soon{
+    display:block;
+    font-size:11px;
+    font-weight:500;
+    color:var(--muted);
+  }
+
+  /* ---------- 리스트 카드 ---------- */
+  .card{
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:8px 22px;
+    box-shadow:0 1px 2px rgba(17,19,26,.05), 0 12px 30px -18px rgba(17,19,26,.4);
+  }
+
+  .rows{ list-style:none; margin:0; padding:0; }
+
+  .rows li + li{ border-top:1px solid var(--line); }
+
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:15px 0;
+    text-decoration:none;
+    color:inherit;
+    font-size:15px;
+    font-weight:500;
+  }
+
+  .row span:last-child{
+    color:var(--muted);
+    font-size:14px;
+    transition:transform .16s ease, color .16s ease;
+  }
+
+  .row:hover span:last-child,
+  .row:focus-visible span:last-child{
+    color:var(--accent);
+    transform:translateX(3px);
+  }
+
+  /* ---------- 문의 ---------- */
+  .contact{
+    display:inline-block;
+    margin-top:4px;
+    font-size:17px;
+    font-weight:600;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:2px solid rgba(46,82,255,.28);
+    padding-bottom:2px;
+  }
+
+  .contact:hover{ border-bottom-color:var(--accent); }
+
+  /* ---------- 푸터 ---------- */
+  footer{
+    margin-top:72px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+
+  .copyright{
+    margin:0 0 12px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+
+  .legal{
+    margin:0 0 8px;
+    max-width:56ch;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--muted);
+  }
+
+  .legal:last-child{ margin-bottom:0; }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+    border-radius:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  @media (max-width:520px){
+    .wrap{ padding:56px 20px 48px; }
+    .apps{ gap:24px 12px; }
+  }
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
   <header>
-    <div class="app">
-      <div>
-        <div class="app-name">색줍기</div>
-        <div class="app-sub">사진 색상 추출, 컬러 기록</div>
-      </div>
-    </div>
-    <h1>색줍기</h1>
-    <p class="meta">사진 속 원하는 픽셀의 색을 정확한 HEX 값으로 읽어내는 iOS 앱</p>
+    <p class="eyebrow">iOS · Indie Developer</p>
+    <h1>eunmi jeon</h1>
+    <p class="lede">기획부터 디자인, 개발까지 혼자 만드는 iOS 앱을 모아둔 곳입니다.</p>
   </header>
 
-  <div class="card">
-    <p>사진첩 접근 권한을 묻지 않습니다. 고른 사진 한 장만 기기 안에서 처리하며,
-    색은 sRGB 기준으로 변환해 웹·디자인 도구와 같은 값을 보여줍니다.</p>
-  </div>
+  <section class="section">
+    <h2 class="section-title">Apps</h2>
+    <ul class="apps">
 
-  <h2>문서</h2>
-  <ul>
-    <li><a href="support.html">고객지원 · 자주 묻는 질문</a></li>
-    <li><a href="privacy.html">개인정보 처리방침</a></li>
-  </ul>
+      <li>
+        <a class="app" href="support/jansori.html">
+          <span class="icon" aria-hidden="true">🐷</span>
+          <span class="app-name">잔소리 가계부</span>
+        </a>
+      </li>
 
-  <h2>문의</h2>
-  <p><a href="mailto:ymymda0711@gmail.com">ymymda0711@gmail.com</a></p>
+      <li>
+        <a class="app" href="support/ttokddi.html">
+          <span class="icon" aria-hidden="true">⏱️</span>
+          <span class="app-name">똑띠 플래너</span>
+        </a>
+      </li>
 
-  <footer>색줍기 · com.saekjupgi.app</footer>
+      <li>
+        <a class="app" href="support/filmi.html">
+          <span class="icon" aria-hidden="true">🎞️</span>
+          <span class="app-name">필르미</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/dogaki.html">
+          <span class="icon" aria-hidden="true">🍒</span>
+          <span class="app-name">도각이</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/moodd.html">
+          <span class="icon" aria-hidden="true">📅</span>
+          <span class="app-name">무드디데이</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/oldmi.html">
+          <span class="icon" aria-hidden="true">🕰️</span>
+          <span class="app-name">올드미</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/gyeol.html">
+          <span class="icon" aria-hidden="true">🎧</span>
+          <span class="app-name">결</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="app" href="support/saekjupgi.html">
+          <span class="icon" aria-hidden="true">🎨</span>
+          <span class="app-name">색줍기</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">고객 지원</h2>
+    <div class="card">
+      <ul class="rows">
+        <li><a class="row" href="support/jansori.html"><span>잔소리 가계부</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/ttokddi.html"><span>똑띠 플래너</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/filmi.html"><span>필르미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/dogaki.html"><span>도각이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/moodd.html"><span>무드디데이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/oldmi.html"><span>올드미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/gyeol.html"><span>결</span><span>보기 →</span></a></li>
+        <li><a class="row" href="support/saekjupgi.html"><span>색줍기</span><span>보기 →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">개인정보 처리방침</h2>
+    <div class="card">
+      <ul class="rows">
+        <li><a class="row" href="privacy/jansori.html"><span>잔소리 가계부</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/ttokddi.html"><span>똑띠 플래너</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/filmi.html"><span>필르미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/dogaki.html"><span>도각이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/moodd.html"><span>무드디데이</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/oldmi.html"><span>올드미</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/gyeol.html"><span>결</span><span>보기 →</span></a></li>
+        <li><a class="row" href="privacy/saekjupgi.html"><span>색줍기</span><span>보기 →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">문의</h2>
+    <p style="margin:0 0 6px; color:var(--muted); font-size:15px;">
+      버그 제보나 기능 제안은 메일로 보내주세요.
+    </p>
+    <a class="contact" href="mailto:ymymda0711@gmail.com">ymymda0711@gmail.com</a>
+  </section>
+
+  <footer>
+    <p class="copyright">Copyright © 2026 ym. All rights reserved.</p>
+
+    <p class="legal">
+      이 사이트에 실린 앱 이름, 아이콘, 이미지, 문구를 포함한 모든 콘텐츠의 저작권은
+      개발자에게 있습니다. 사전 동의 없이 복제, 배포, 수정하거나 상업적으로 이용할 수 없습니다.
+    </p>
+
+    <p class="legal">
+      Apple, App Store, iPhone, iPad는 미국 및 기타 국가에 등록된 Apple Inc.의 상표입니다.
+      본 사이트는 Apple Inc.와 제휴 관계가 없습니다.
+    </p>
+
+    <p class="legal">
+      문의: <a href="mailto:ymymda0711@gmail.com" style="color:inherit;">ymymda0711@gmail.com</a>
+    </p>
+  </footer>
+
 </div>
 </body>
 </html>
