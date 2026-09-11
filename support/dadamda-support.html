@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>다담다 — 고객지원</title>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+<style>
+  :root{
+    --bg:#E8EBF1;
+    --surface:#FFFFFF;
+    --ink:#11131A;
+    --muted:#666E80;
+    --line:rgba(17,19,26,.10);
+    --accent:#2E52FF;
+    --radius:22px;
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-weight:450;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(70% 55% at 18% 0%, rgba(46,82,255,.16), transparent 62%),
+      radial-gradient(60% 50% at 92% 8%, rgba(255,122,182,.16), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:720px;
+    margin:0 auto;
+    padding:72px 24px 64px;
+  }
+  .eyebrow{
+    margin:0 0 12px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  h1{
+    margin:0 0 6px;
+    font-size:clamp(28px, 6vw, 40px);
+    font-weight:800;
+    letter-spacing:-.03em;
+  }
+  .meta{
+    margin:0 0 32px;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .card{
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:32px 32px 8px;
+    box-shadow:0 1px 2px rgba(17,19,26,.05), 0 12px 30px -18px rgba(17,19,26,.4);
+    margin-bottom:28px;
+  }
+  h2{
+    font-size:16px;
+    font-weight:700;
+    margin:28px 0 10px;
+    letter-spacing:-.01em;
+  }
+  .card > h2:first-child{ margin-top:0; }
+  h3{
+    font-size:14.5px;
+    font-weight:700;
+    margin:18px 0 4px;
+    color:var(--ink);
+  }
+  p{
+    margin:0 0 18px;
+    font-size:15px;
+    color:var(--ink);
+  }
+  p.small{ font-size:14px; color:var(--muted); }
+  a{ color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(46,82,255,.28); }
+  a:hover{ border-bottom-color:var(--accent); }
+  .back{
+    display:inline-block;
+    margin-bottom:28px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:none;
+  }
+  .back:hover{ color:var(--accent); }
+  .contact{
+    display:inline-block;
+    margin-top:2px;
+    font-size:17px;
+    font-weight:600;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:2px solid rgba(46,82,255,.28);
+    padding-bottom:2px;
+  }
+  .contact:hover{ border-bottom-color:var(--accent); }
+  footer{
+    margin-top:48px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .legal{
+    margin:0 0 8px;
+    max-width:56ch;
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--muted);
+  }
+  .legal:last-child{ margin-bottom:0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../index.html">← eunmi jeon</a>
+
+  <p class="eyebrow">Support</p>
+  <h1>다담다</h1>
+  <p class="meta">최종 업데이트: 2026년 9월 12일</p>
+
+  <div class="card">
+    <h2>앱 소개</h2>
+    <p>다담다는 만화·영화·애니·드라마·책·기타를 어디까지 봤는지, 무엇이 좋았는지 기록하는 개인용 iOS 앱입니다.</p>
+
+    <h2>자주 묻는 질문</h2>
+
+    <h3>기록한 데이터는 어디에 저장되나요?</h3>
+    <p>모든 기록은 이용 중인 기기에만 저장됩니다. 앱을 삭제하면 기기에 저장된 기록도 함께 삭제되니, 삭제 전 설정의 백업 기능을 이용해 주세요.</p>
+
+    <h3>기기를 바꾸면 기록이 사라지나요?</h3>
+    <p>설정 &gt; 백업 및 복원에서 백업 파일을 만들어 iCloud Drive나 파일 앱에 저장해 두시면, 새 기기의 다담다에서 그 파일로 복원할 수 있습니다.</p>
+
+    <h3>백업 복원이 안 돼요.</h3>
+    <p>백업 파일이 완전히 기기에 다운로드된 상태인지 확인해 주세요. iCloud Drive에 저장한 파일은 다운로드가 끝나기 전에는 열리지 않을 수 있습니다. 그래도 안 되면 아래 문의처로 백업 파일 생성 시각과 함께 연락해 주세요.</p>
+
+    <h3>초기화하면 어떻게 되나요?</h3>
+    <p>초기화는 기록한 항목과 사진만 삭제합니다. 만화·영화·애니·드라마·책·기타 카테고리 자체는 남아 있으며, 테마·글꼴 등 설정값도 유지됩니다.</p>
+
+    <h3>광고가 나오는 이유는 무엇인가요?</h3>
+    <p>다담다는 무료로 제공되며, 홈 화면 하단의 배너 광고로 운영됩니다. 앱 추적 동의를 거부하셔도 광고는 정상적으로 표시됩니다.</p>
+
+    <h3>테마와 글꼴은 어디서 바꾸나요?</h3>
+    <p>설정 화면에서 파스텔 톤 테마 5종과 글꼴(기본/류류체/콘콘체) 중 원하는 것을 선택할 수 있습니다.</p>
+  </div>
+
+  <div class="card">
+    <h2>버그 제보 및 건의</h2>
+    <p>오류를 발견하셨거나 개선 아이디어가 있으시면 언제든 알려주세요. 아래 내용을 함께 보내주시면 확인이 빠릅니다.</p>
+    <p class="small">· 기기 모델 및 iOS 버전<br>· 문제가 발생한 화면 또는 기능<br>· 가능하다면 스크린샷</p>
+
+    <h2>이용약관</h2>
+    <p>본 앱은 개인 기록 관리 목적으로만 제공되며, 이용자가 입력한 콘텐츠에 대한 책임은 이용자 본인에게 있습니다. 본 앱을 이용해 저작권을 침해하거나 불법적인 목적으로 콘텐츠를 기록하는 행위는 금지됩니다. 개발자는 서비스 개선을 위해 사전 고지 후 앱 기능을 변경하거나 중단할 수 있습니다.</p>
+  </div>
+
+  <p class="small" style="margin-bottom:6px;">문의</p>
+  <a class="contact" href="mailto:ymymda0711@gmail.com">ymymda0711@gmail.com</a>
+  <p style="margin-top:24px;"><a href="../privacy/dadamda.html">개인정보처리방침 보기 →</a></p>
+
+  <footer>
+    <p class="legal">Copyright © 2026 ym. All rights reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>
